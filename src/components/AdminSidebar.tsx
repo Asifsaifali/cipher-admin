@@ -12,7 +12,6 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
   useSidebar,
@@ -34,7 +33,7 @@ const navigationItems = [
 ] as const;
 
 export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarProps) {
-  const { state, toggleSidebar } = useSidebar();
+  const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
 
   return (
@@ -57,17 +56,7 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
               </div>
             </div>
           )}
-          <SidebarTrigger asChild>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="hover:bg-sidebar-accent h-8 w-8 p-0"
-            >
-              <ChevronLeft className={`w-4 h-4 transition-transform duration-300 ${
-                isCollapsed ? "rotate-180" : ""
-              }`} />
-            </Button>
-          </SidebarTrigger>
+          <SidebarTrigger />
         </div>
       </SidebarHeader>
 
@@ -75,22 +64,20 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
         <SidebarMenu className="space-y-2">
           {navigationItems.map((item) => (
             <SidebarMenuItem key={item.id}>
-              <SidebarMenuButton
+              <button
                 onClick={() => onSectionChange(item.id as ActiveSection)}
-                className={`w-full justify-start h-12 rounded-xl transition-all duration-300 hover-lift hover:bg-sidebar-accent group ${
+                className={`w-full flex items-center justify-start h-12 px-3 rounded-xl transition-all duration-300 hover-lift hover:bg-sidebar-accent group ${
                   activeSection === item.id 
                     ? "bg-gradient-primary text-primary-foreground shadow-glow" 
                     : "text-sidebar-foreground hover:text-sidebar-primary"
                 }`}
-                tooltip={isCollapsed ? item.label : undefined}
+                title={isCollapsed ? item.label : undefined}
               >
-                <div className="flex items-center w-full">
-                  <item.icon className={`w-5 h-5 ${isCollapsed ? "mx-auto" : "mr-3"} transition-colors duration-300`} />
-                  {!isCollapsed && (
-                    <span className="font-medium animate-slide-in">{item.label}</span>
-                  )}
-                </div>
-              </SidebarMenuButton>
+                <item.icon className={`w-5 h-5 ${isCollapsed ? "mx-auto" : "mr-3"} transition-colors duration-300`} />
+                {!isCollapsed && (
+                  <span className="font-medium animate-slide-in">{item.label}</span>
+                )}
+              </button>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
