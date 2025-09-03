@@ -36,9 +36,9 @@ export function AdminDashboard() {
           activeSection={activeSection} 
           onSectionChange={setActiveSection} 
         />
-        <main className="flex-1 overflow-hidden">
-          <div className="h-full p-6 overflow-y-auto">
-            <div className="animate-fade-in">
+        <main className="flex-1 flex flex-col min-h-screen">
+          <div className="flex-1 p-6 overflow-y-auto">
+            <div className="animate-fade-in max-w-full">
               {renderActiveSection()}
             </div>
           </div>

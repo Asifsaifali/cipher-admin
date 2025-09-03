@@ -17,6 +17,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ActiveSection } from "./AdminDashboard";
 
 interface AdminSidebarProps {
@@ -56,7 +57,10 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
               </div>
             </div>
           )}
-          <SidebarTrigger />
+          <div className="flex items-center space-x-2">
+            <ThemeToggle />
+            <SidebarTrigger />
+          </div>
         </div>
       </SidebarHeader>
 
