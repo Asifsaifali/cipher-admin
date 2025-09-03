@@ -84,10 +84,12 @@ export function AdminSidebar({ activeSection, onSectionChange }: AdminSidebarPro
                 }`}
                 tooltip={isCollapsed ? item.label : undefined}
               >
-                <item.icon className={`w-5 h-5 ${isCollapsed ? "mx-auto" : "mr-3"} transition-colors duration-300`} />
-                {!isCollapsed && (
-                  <span className="font-medium animate-slide-in">{item.label}</span>
-                )}
+                <div className="flex items-center w-full">
+                  <item.icon className={`w-5 h-5 ${isCollapsed ? "mx-auto" : "mr-3"} transition-colors duration-300`} />
+                  {!isCollapsed && (
+                    <span className="font-medium animate-slide-in">{item.label}</span>
+                  )}
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
